@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -35,7 +36,6 @@ public class UI {
 		System.out.print("\033[H\033[2J");       
 		System.out.flush();   
 	}   
-
 	
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
@@ -48,6 +48,14 @@ public class UI {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
 		}            //InputMismatchException que é uma exceção que já tem no java que é um erro de entrada de dados
 	}
+	
+	public static void printMatch(ChessMatch chessMach) {
+		printBoard(chessMach.getPieces());
+		System.out.println();
+		System.out.println("Turn: " + chessMach.getTurn());
+		System.out.println("Waiting player: " + chessMach.getCurrentPlayer());
+	}
+	
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print(8 - i + " ");
